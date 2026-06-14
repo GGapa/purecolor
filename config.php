@@ -1,32 +1,28 @@
 <?php
 /**
  * PureColor 配置文件
- * 敏感信息从 .env 读取，不再明文存储在代码中
  *
- * 首次部署步骤:
- * 1. 复制 .env.example 为 .env
- * 2. 编辑 .env 填入实际的数据库配置
- * 3. 确保 .env 文件权限安全: chmod 600 .env
+ * 数据库凭据从 .env 文件读取，不在此处明文存储。
+ * 部署步骤:
+ *   1. cp .env.example .env
+ *   2. 编辑 .env 填入实际数据库密码
+ *   3. chmod 600 .env
  */
 
-// 加载 .env 文件
-require_once(__DIR__ . '/env_loader.php');
+require_once __DIR__ . '/env_loader.php';
 load_env(__DIR__ . '/.env');
 
-// 从环境变量读取数据库配置
-$sql_host     = env('SQL_HOST', 'localhost');
-$sql_username = env('SQL_USERNAME', 'root');
-$sql_password = env('SQL_PASSWORD', '');
-$sql_db_name  = env('SQL_DB_NAME', 'purecolor');
+$conn = mysqli_connect(
+	$_SERVER['DB_HOST']     ?? 'localhost',
+	$_SERVER['DB_USERNAME'] ?? 'root',
+	$_SERVER['DB_PASSWORD'] ?? '',
+	$_SERVER['DB_NAME']     ?? 'purecolor'
+);
 
-// 连接数据库
-$conn = mysqli_connect($sql_host, $sql_username, $sql_password);
 if (!$conn) {
-	die(mysqli_error());
+	die('数据库连接失败: ' . mysqli_connect_error());
 }
-mysqli_select_db($conn, $sql_db_name);
 
-// 默认色板数据
 $default_color_json = '
 [
 	{
