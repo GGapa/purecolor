@@ -1,2 +1,3 @@
 RewriteEngine On
-RewriteRule p/(.*?)/?$ index.php?subdir&id=$1
+RewriteCond %{REQUEST_URI} /\.
+RewriteRule ^ - [F,L]
