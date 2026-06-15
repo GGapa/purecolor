@@ -1,2 +1,13 @@
 RewriteEngine On
-RewriteRule p/(.*?)/?$ index.php?subdir&id=$1
+
+# Block access to hidden files (starting with .)
+RewriteCond %{REQUEST_URI} /\.
+RewriteRule ^ - [F,L]
+
+# Block access to sensitive file extensions
+<FilesMatch "\.(env|sql|log|ini|gitignore|lock|json\.example)$">
+    Require all denied
+</FilesMatch>
+
+# URL rewrite for palette pages
+RewriteRule ^p/(.*?)/?$ index.php?subdir&id=$1 [L,QSA]

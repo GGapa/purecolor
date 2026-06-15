@@ -10,9 +10,23 @@
 				$res_prefix = "../";
 			}
 		?>
-		<link href="<?php echo $res_prefix; ?>css/style.css" type='text/css' rel='stylesheet'>
-		<script src="<?php echo $res_prefix; ?>js/vue.js"></script>
+
+		<!-- Material Design Web -->
+		<link href="https://cdn.jsdelivr.net/npm/material-components-web@14.0.0/dist/material-components-web.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/material-components-web@14.0.0/dist/material-components-web.min.js"></script>
+
+		<!-- Material Symbols -->
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300&display=swap" rel="stylesheet">
+
+		<!-- Original CSS -->
+		<link href="<?php echo $res_prefix; ?>css/style.css" type='text/css' rel='stylesheet'>
+
+		<!-- Original JS -->
+		<script src="<?php echo $res_prefix; ?>js/vue.js"></script>
 		<script src="<?php echo $res_prefix; ?>js/jquery-3.4.1.min.js"></script>
 		<script src="<?php echo $res_prefix; ?>js/main.js"></script>
 	</head>
@@ -57,11 +71,51 @@
 	</script>
 	<body>
 		<div id="app">
-			<div id="head">
+			<!-- ===== Material App Bar ===== -->
+			<div class="pc-app-bar">
+				<span class="material-symbols-outlined pc-app-bar-icon">palette</span>
+				<span class="pc-app-bar-title">纯·色</span>
+				<span class="pc-app-bar-subtitle">Pure Colors</span>
+				<span class="pc-app-bar-spacer"></span>
+				<a class="pc-app-bar-github" href="https://github.com/GGapa/purecolor" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530.97 517.81" width="22" height="22">
+						<path d="M265.47,0C118.88,0,0,118.85,0,265.47,0,382.75,76.06,482.24,181.57,517.35c13.27,2.44,18.12-5.76,18.12-12.79,0-6.31-.23-23-.36-45.15-73.85,16-89.43-35.59-89.43-35.59C97.83,393.16,80.42,385,80.42,385c-24.1-16.47,1.83-16.13,1.83-16.13,26.64,1.87,40.66,27.35,40.66,27.35,23.68,40.57,62.14,28.85,77.26,22.06,2.42-17.16,9.28-28.85,16.86-35.49-58.95-6.7-120.93-29.47-120.93-131.2,0-29,10.35-52.67,27.33-71.23-2.73-6.72-11.84-33.71,2.6-70.25,0,0,22.29-7.14,73,27.21a251.54,251.54,0,0,1,132.93,0C382.65,103,404.9,110.1,404.9,110.1c14.49,36.54,5.37,63.53,2.64,70.25,17,18.56,27.29,42.25,27.29,71.23,0,102-62.07,124.42-121.21,131,9.53,8.2,18,24.4,18,49.16,0,35.49-.33,64.12-.33,72.83,0,7.09,4.79,15.35,18.26,12.76C455,482.15,531,382.72,531,265.47,531,118.85,412.1,0,265.47,0Z" transform="translate(0)" style="fill: #EADDFF;"></path>
+					</svg>
+				</a>
+			</div>
+
+			<!-- ===== Material Color Info Card ===== -->
+			<div class="pc-color-card" v-if="notfound == false">
+				<div class="pc-color-preview" :style="'background-color: ' + color"></div>
+				<div class="pc-color-info">
+					<div class="pc-color-hex">{{ color_uppercase }}</div>
+					<div class="pc-color-values">
+						<div class="pc-color-value-row">
+							<span class="pc-color-label">RGB</span>
+							<span>{{ color_rgb_array['R'] }} , {{ color_rgb_array['G'] }} , {{ color_rgb_array['B'] }}</span>
+						</div>
+						<div class="pc-color-value-row">
+							<span class="pc-color-label">HEX</span>
+							<span>{{ color_uppercase }}</span>
+						</div>
+						<div class="pc-color-value-row">
+							<span class="pc-color-label">HSL</span>
+							<span>{{ Math.round(color_hsl_array['h'] * 360)}}° , {{ Math.trunc(color_hsl_array['s'] * 100)}}<span class="hsl-dec">{{ ((color_hsl_array['s'] * 100) % 1).toFixed(1).replace("0.", ".") }}</span>% , {{ Math.trunc(color_hsl_array['l'] * 100)}}<span class="hsl-dec">{{ ((color_hsl_array['l'] * 100) % 1).toFixed(1).replace("0.", ".") }}</span>%</span>
+						</div>
+						<div class="pc-color-value-row">
+							<span class="pc-color-label">Gray</span>
+							<span>{{ vhex2gray(color) }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Original hidden elements (kept for JS compatibility) -->
+			<div id="head" style="display:none;">
 				<div id="title">
 					<span id="subtitle">Pure Colors</span>
 					纯·色
-					<a class="github-link" href="https://github.com/GGapa/purecolor" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530.97 517.81" width="30" height="30"><defs></defs><path d="M265.47,0C118.88,0,0,118.85,0,265.47,0,382.75,76.06,482.24,181.57,517.35c13.27,2.44,18.12-5.76,18.12-12.79,0-6.31-.23-23-.36-45.15-73.85,16-89.43-35.59-89.43-35.59C97.83,393.16,80.42,385,80.42,385c-24.1-16.47,1.83-16.13,1.83-16.13,26.64,1.87,40.66,27.35,40.66,27.35,23.68,40.57,62.14,28.85,77.26,22.06,2.42-17.16,9.28-28.85,16.86-35.49-58.95-6.7-120.93-29.47-120.93-131.2,0-29,10.35-52.67,27.33-71.23-2.73-6.72-11.84-33.71,2.6-70.25,0,0,22.29-7.14,73,27.21a251.54,251.54,0,0,1,132.93,0C382.65,103,404.9,110.1,404.9,110.1c14.49,36.54,5.37,63.53,2.64,70.25,17,18.56,27.29,42.25,27.29,71.23,0,102-62.07,124.42-121.21,131,9.53,8.2,18,24.4,18,49.16,0,35.49-.33,64.12-.33,72.83,0,7.09,4.79,15.35,18.26,12.76C455,482.15,531,382.72,531,265.47,531,118.85,412.1,0,265.47,0Z" transform="translate(0)" style="fill: var(--color); fill-rule: evenodd;"></path></svg></a>
+					<a class="github-link" href="https://github.com/GGapa/purecolor" target="_blank"></a>
 				</div>
 				<div id="info">
 					<div id="rgb" class="colorinfo-item"><span class="colorinfo-title">RGB</span>{{ color_rgb_array['R'] }} , {{ color_rgb_array['G'] }} , {{ color_rgb_array['B'] }}</div>
@@ -70,26 +124,27 @@
 					<div id="gray" class="colorinfo-item"><span class="colorinfo-title">Gray</span>{{ vhex2gray(color) }}</div>
 				</div>
 			</div>
+
 			<div id="content">
 				<?php if (isset($sqlres)) { 
 						if (mysqli_num_rows($sqlres) > 0) { ?>
-					<div class="palette-info">
+					<div class="palette-info palette-info-material">
 						<div class="palette-info-title"><?php echo $data['title'];?></div>
 						<div class="palette-info-author">By <?php echo $data['author'];?></div>
 						<div class="palette-info-description"><?php echo $data['description'];?></div>
 					</div>
 				<?php }
 					} ?>
-				<div v-for="group in list" class="color-group" v-if="notfound == false"><!--正常-->
-					<div class="color-group-title">{{ group.name }}</div>
+				<div v-for="group in list" class="color-group color-group-material" v-if="notfound == false">
+					<div class="color-group-title color-group-title-material">{{ group.name }}</div>
 					<div class="color-group-container">
-						<div v-for="item in sorted(group.colors , group.autosort)" class="color-item" v-bind:style="'--item-color: ' + item.hex + '; --item-color-rgb: ' + colorhex2str(item.hex) + '; --item-shadow-color-rgb: ' + colorhex2str(item.hex) + ';'" v-bind:hex="item.hex" v-bind:class="{current: color == item.hex , toolight: vistoolight(item.hex) , 'color-group-subtitle': (item.hex == 'subtitle')}">
-							<div v-if="item.hex != 'subtitle'" v-bind:style="{background: item.hex}" class="color-preview" v-on:click="vchangecolor(item.hex);"></div>
-							<div class="color-name">{{ (item.name == '' || item.name == undefined) ? item.hex : item.name }}</div>
+						<div v-for="item in sorted(group.colors , group.autosort)" class="color-item color-item-material" v-bind:style="'--item-color: ' + item.hex + '; --item-color-rgb: ' + colorhex2str(item.hex) + '; --item-shadow-color-rgb: ' + colorhex2str(item.hex) + ';'" v-bind:hex="item.hex" v-bind:class="{current: color == item.hex , toolight: vistoolight(item.hex) , 'color-group-subtitle': (item.hex == 'subtitle')}">
+							<div v-if="item.hex != 'subtitle'" v-bind:style="{background: item.hex}" class="color-preview color-preview-material" v-on:click="vchangecolor(item.hex);"></div>
+							<div class="color-name color-name-material">{{ (item.name == '' || item.name == undefined) ? item.hex : item.name }}</div>
 						</div>
 					</div>
 				</div>
-				<div class="notfound" v-if="notfound == true"> <!--404-->
+				<div class="notfound notfound-material" v-if="notfound == true">
 					404<div class="notfound-tip">好像找不到这个色板...</div>
 				</div>
 			</div>
@@ -112,17 +167,11 @@
 		</div>
 		<div id="mask"></div>
 		<div id="mask2"></div>
-		<div class="fabs">
-			<!-- <a id="new_palette" class="btn" href="<?php echo $res_prefix; ?>edit.php">
-				<svg t="1586497038133" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3568" width="14" height="14"><path d="M426.666667 0h170.666666v1024H426.666667z" fill="#ffffff" p-id="3569"></path><path d="M1024 597.333333V426.666667H0v170.666666z" fill="#ffffff" p-id="3570"></path></svg>
-				<span style="width: 1px;display: inline-block;"></span>
-				新建
-			</a> -->
-			<button id="rand_color" class="btn" onclick="randomcolor();">
-				<svg t="1580568273568" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1899" width="18" height="18" style="transform: translateY(2px);"><path d="M768.863 325.733c-48.775 0-170.409 121.182-259.229 207.077-134.661 130.244-261.862 256.802-363.67 256.802h-62.62C57.75 789.612 37 768.828 37 743.223c0-25.604 20.749-46.387 46.342-46.387h62.622c64.335 0 194.592-129.518 299.256-230.745 127.382-123.198 237.392-233.135 323.643-233.135h59.769l-63.418-61.55c-18.113-18.088-18.142-45.665-0.062-63.788 18.08-18.128 47.422-18.164 65.535-0.07l142.708 142.495A46.306 46.306 0 0 1 987 282.83c0 12.308-4.893 24.06-13.604 32.759l-142.71 142.4c-9.043 9.032-20.89 13.328-32.735 13.328-11.875 0-23.749-4.977-32.799-14.05-18.08-18.121-18.05-48.358 0.062-66.445l63.417-65.09h-59.768z m61.824 238.627c-18.113-18.095-47.456-18.066-65.535 0.062-18.08 18.121-18.05 49.237 0.062 67.323l63.417 65.09h-59.768c-38.06 0-101.643-56.357-164.685-115.353-18.69-17.493-48.021-17.394-65.495 1.306-17.486 18.7-16.507 49.382 2.183 66.87 96.042 89.898 160.826 139.952 227.997 139.952h59.769l-63.418 61.549c-18.113 18.087-18.142 46.552-0.062 64.674 9.051 9.072 20.924 13.167 32.799 13.167 11.845 0 23.692-4.74 32.736-13.773l142.708-142.619c8.71-8.7 13.604-20.56 13.604-32.87a46.44 46.44 0 0 0-13.604-32.842L830.687 564.36zM83.342 325.733h62.622c48.84 0 121.646 62.22 179.612 114.893 8.88 8.065 20.026 12.923 31.147 12.923 12.604 0 25.172-4.677 34.315-14.75 17.208-18.954 15.8-49.839-3.146-67.055-90.646-82.365-166.477-138.787-241.928-138.787H83.342C57.749 232.957 37 253.743 37 279.346s20.75 46.387 46.342 46.387z" p-id="1900" fill="#ffffff" style="transition: all .3s ease;"></path></svg>
-				<span style="width: 1px;display: inline-block;"></span>
-				随机
-		</button></div>
+
+		<!-- ===== Material FAB ===== -->
+		<button class="pc-fab" onclick="randomcolor()" title="随机颜色">
+			<span class="material-symbols-outlined">shuffle</span>
+		</button>
 	</body>
 </html>
 
@@ -138,6 +187,8 @@
 		watch: {
 			color: function (newcolor, oldcolor) {
 				$("#now_color_definition").html(":root{--color: " + newcolor + "; --color-rgb: " + hex2str(newcolor) + ";}");
+				// Update Material color preview
+				document.documentElement.style.setProperty('--pc-preview-color', newcolor);
 			}
 		},
 		computed: {
@@ -209,4 +260,25 @@
 		$("#mobile_color_group_container_padding_definition").html(':root{--mobile-color-group-container-padding: ' + padding + 'px;}');
 	});
 	$(window).trigger("resize");
+
+	// ===== Material Ripple Effect =====
+	document.addEventListener('click', function(e) {
+		var target = e.target.closest('.color-item-material');
+		if (!target) return;
+
+		var ripple = document.createElement('span');
+		var rect = target.getBoundingClientRect();
+		var size = Math.max(rect.width, rect.height);
+		var x = e.clientX - rect.left - size / 2;
+		var y = e.clientY - rect.top - size / 2;
+
+		ripple.style.cssText = 'position:absolute;width:' + size + 'px;height:' + size + 'px;left:' + x + 'px;top:' + y + 'px;background:rgba(255,255,255,0.35);border-radius:50%;transform:scale(0);animation:pc-ripple 0.5s ease-out;pointer-events:none;z-index:1;';
+		target.appendChild(ripple);
+		setTimeout(function() { ripple.remove(); }, 500);
+	});
+
+	// Inject ripple keyframe
+	var pcStyle = document.createElement('style');
+	pcStyle.textContent = '@keyframes pc-ripple{to{transform:scale(2.5);opacity:0;}}';
+	document.head.appendChild(pcStyle);
 </script>

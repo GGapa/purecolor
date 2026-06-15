@@ -721,3 +721,352 @@ body.toolight #rand_color > svg > path{
     margin-top: 25px;
     line-break: anywhere;
 }
+
+/* ===== Material Design Additions ===== */
+
+/* Font override: use Roboto globally */
+body, * {
+    font-family: 'Roboto', 'Noto Serif SC', sans-serif !important;
+}
+
+body {
+    background: #FFFBFE;
+}
+
+/* ===== App Bar ===== */
+.pc-app-bar {
+    display: flex;
+    align-items: center;
+    background-color: #6750A4;
+    color: #FFFFFF;
+    height: 64px;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.20);
+    font-family: 'Roboto', sans-serif;
+}
+
+.pc-app-bar-icon {
+    font-size: 28px;
+    margin-right: 12px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.pc-app-bar-title {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.15px;
+}
+
+.pc-app-bar-subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.75;
+    margin-left: 10px;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.pc-app-bar-spacer {
+    flex: 1;
+}
+
+.pc-app-bar-github {
+    display: flex;
+    align-items: center;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+.pc-app-bar-github:hover {
+    opacity: 1;
+}
+
+/* ===== Color Info Card ===== */
+.pc-color-card {
+    display: flex;
+    align-items: center;
+    background: #EADDFF;
+    color: #21005D;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 24px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.pc-color-preview {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    margin-right: 24px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    transition: background-color 0.4s ease;
+}
+
+.pc-color-hex {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.pc-color-values {
+    font-size: 14px;
+    line-height: 2.2;
+}
+
+.pc-color-value-row {
+    display: flex;
+    align-items: baseline;
+}
+
+.pc-color-label {
+    width: 42px;
+    color: #49454F;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ===== FAB (Floating Action Button) ===== */
+.pc-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background-color: #625B71;
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.28);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.25s ease, transform 0.12s ease;
+    z-index: 200;
+    outline: none;
+}
+
+.pc-fab:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.32);
+    transform: translateY(-1px);
+}
+
+.pc-fab:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.pc-fab .material-symbols-outlined {
+    font-size: 28px;
+    font-variation-settings: 'FILL' 1;
+    margin-top: -37px;
+}
+
+/* ===== Palette Info (Material) ===== */
+.palette-info-material {
+    background: #F7F2FA;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 0 20px 40px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.palette-info-material .palette-info-title {
+    color: #1D1B20;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+
+.palette-info-material .palette-info-author {
+    color: #49454F;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-bottom: 12px;
+}
+
+.palette-info-material .palette-info-description {
+    color: #49454F;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ===== Color Group (Material) ===== */
+.color-group-material {
+    margin-bottom: 32px !important;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s ease;
+}
+
+.color-group-material:hover {
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.color-group-title-material {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #1D1B20;
+    margin-bottom: 24px !important;
+    letter-spacing: 0.15px;
+}
+
+/* ===== Color Item (Material) ===== */
+.color-item-material {
+    padding: 12px !important;
+    margin-bottom: 16px !important;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.color-item-material:active {
+    background: rgba(0,0,0,0.04);
+}
+
+/* ===== Color Preview (Material) ===== */
+.color-preview-material {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 3px 8px rgba(var(--item-shadow-color-rgb), 0.25) !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer;
+    position: relative;
+}
+
+.color-preview-material:hover {
+    box-shadow: 0 6px 18px rgba(var(--item-shadow-color-rgb), 0.4) !important;
+    transform: translateY(-4px) scale(1.03) !important;
+}
+
+.color-preview-material:active {
+    transform: translateY(-2px) scale(0.98) !important;
+}
+
+.color-item.current .color-preview-material {
+    box-shadow: 0 6px 20px rgba(var(--item-shadow-color-rgb), 0.5) !important;
+    transform: scale(1.05) !important;
+}
+
+/* ===== Color Name (Material) ===== */
+.color-name-material {
+    font-size: 13px !important;
+    color: #49454F;
+    margin-top: 10px !important;
+    max-width: 80px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.color-item.current .color-name-material {
+    color: var(--color);
+    font-weight: 500;
+    transform: scale(1.1);
+}
+
+/* ===== Not Found (Material) ===== */
+.notfound-material {
+    text-align: center;
+    font-size: 120px !important;
+    color: #6750A4 !important;
+    font-weight: 300;
+    padding: 60px 0;
+}
+
+.notfound-material .notfound-tip {
+    font-size: 24px !important;
+    color: #49454F;
+    opacity: 0.7;
+    margin-top: 16px;
+}
+
+/* ===== Hide old fabs container ===== */
+.fabs {
+    display: none !important;
+}
+
+/* ===== Mobile Overrides ===== */
+@media screen and (max-width: 900px) {
+    .pc-app-bar {
+        height: 56px;
+        padding: 0 12px;
+    }
+
+    .pc-app-bar-title {
+        font-size: 18px;
+    }
+
+    .pc-app-bar-subtitle {
+        display: none;
+    }
+
+    .pc-color-card {
+        margin: 16px 12px;
+        padding: 16px 18px;
+        border-radius: 12px;
+    }
+
+    .pc-color-preview {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        margin-right: 16px;
+    }
+
+    .pc-color-hex {
+        font-size: 24px;
+    }
+
+    .pc-color-values {
+        font-size: 12px;
+    }
+
+    .pc-fab {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+    }
+
+    .pc-fab .material-symbols-outlined {
+        font-size: 24px;
+    }
+
+    .color-group-material {
+        padding: 16px 12px;
+        border-radius: 12px;
+    }
+
+    .color-preview-material {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .color-name-material {
+        font-size: 11px !important;
+        max-width: 50px !important;
+    }
+
+    .palette-info-material {
+        margin: 0 12px 24px 12px;
+        padding: 16px 18px;
+        border-radius: 12px;
+    }
+
+    .palette-info-material .palette-info-title {
+        font-size: 22px;
+    }
+}
