@@ -84,10 +84,10 @@
 				</a>
 			</div>
 
-			<!-- ===== Material Color Info Card ===== -->
-			<div class="pc-color-card" v-if="notfound == false">
-				<div class="pc-color-preview" :style="'background-color: ' + color"></div>
-				<div class="pc-color-info">
+			<!-- ===== Sidebar ===== -->
+			<div class="pc-sidebar" v-if="notfound == false">
+				<div class="pc-color-card">
+					<div class="pc-color-preview" :style="'background-color: ' + color"></div>
 					<div class="pc-color-hex">{{ color_uppercase }}</div>
 					<div class="pc-color-values">
 						<div class="pc-color-value-row">
@@ -108,6 +108,9 @@
 						</div>
 					</div>
 				</div>
+				<button class="pc-fab" onclick="randomcolor()" title="随机颜色">
+					<span class="material-symbols-outlined">shuffle</span>
+				</button>
 			</div>
 
 			<!-- Original hidden elements (kept for JS compatibility) -->
@@ -168,10 +171,6 @@
 		<div id="mask"></div>
 		<div id="mask2"></div>
 
-		<!-- ===== Material FAB ===== -->
-		<button class="pc-fab" onclick="randomcolor()" title="随机颜色">
-			<span class="material-symbols-outlined">shuffle</span>
-		</button>
 	</body>
 </html>
 
