@@ -110,6 +110,7 @@
 				</div>
 				<button class="pc-fab" onclick="randomcolor()" title="随机颜色">
 					<span class="material-symbols-outlined">shuffle</span>
+					<span class="pc-fab-text">随机</span>
 				</button>
 			</div>
 
@@ -243,6 +244,16 @@
 		}
 		app.color = color;
 		$("body").removeClass("color-refreshing");
+		// Toggle .light-bg class on app bar and FAB based on color brightness
+		var appBar = document.querySelector('.pc-app-bar');
+		var fab = document.querySelector('.pc-fab');
+		if (hex2gray(color) > 186) {
+			if (appBar) appBar.classList.add('light-bg');
+			if (fab) fab.classList.add('light-bg');
+		} else {
+			if (appBar) appBar.classList.remove('light-bg');
+			if (fab) fab.classList.remove('light-bg');
+		}
 		setTimeout(function(){
 			$("body").addClass("color-refreshing");
 			$("body").removeClass("toolight");
@@ -280,4 +291,14 @@
 	var pcStyle = document.createElement('style');
 	pcStyle.textContent = '@keyframes pc-ripple{to{transform:scale(2.5);opacity:0;}}';
 	document.head.appendChild(pcStyle);
+
+	// Apply initial light-bg class based on starting theme color
+	(function(){
+		var appBar = document.querySelector('.pc-app-bar');
+		var fab = document.querySelector('.pc-fab');
+		if (hex2gray(themecolor) > 186) {
+			if (appBar) appBar.classList.add('light-bg');
+			if (fab) fab.classList.add('light-bg');
+		}
+	})();
 </script>

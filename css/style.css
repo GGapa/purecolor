@@ -97,7 +97,7 @@ body{
 	width: 100vw;
 	left: 0;
 	bottom: var(--wave-offset);
-	z-index: 10;
+	z-index: 150;
 	transition: all 0s ease;
 }
 #wave_filler{
@@ -107,6 +107,7 @@ body{
 	bottom: 0;
 	height: var(--wave-offset);
 	width: 100vw;
+	z-index: 150;
 	transition: background 0s ease;
 }
 body.color-refreshing #wave , body.color-refreshing #wave_filler{
@@ -160,10 +161,6 @@ body.color-refreshing #wave , body.color-refreshing #wave_filler{
 	opacity: 0;
 	transition: opacity var(--transition-time) ease;
 }
-.toolight #mask2{
-	opacity: .3;
-}
-
 .fabs {
     position: fixed;
     top: 15px;
@@ -407,13 +404,8 @@ body.toolight #rand_color > svg > path{
 		animation-duration: var(--transition-time);
 		animation-timing-function: ease-in-out;
 	}
-	body.toolight #title , body.toolight #info{
-		color: #222;
-	}
-	body.toolight .colorinfo-title {
-		border-right: 1px solid #222;
-	}
 }
+
 @media (min-height: 725px) and (max-height: 1050px){
 	:root{
 		--wave-offset: 50px;
@@ -735,7 +727,7 @@ body {
 	display: flex;
 	align-items: center;
 	background-color: var(--color);
-	color: #FFFFFF;
+	color: #1D1B20;
 	height: 64px;
 	padding: 0 16px;
 	position: sticky;
@@ -851,6 +843,15 @@ body {
 	flex-shrink: 0;
 }
 
+/* ===== App Bar light background overrides ===== */
+.pc-app-bar.light-bg {
+	color: #FFFFFF;
+}
+
+.pc-app-bar.light-bg .pc-app-bar-github svg path {
+	filter: brightness(10);
+}
+
 /* ===== FAB (in sidebar) ===== */
 .pc-fab {
 	position: relative;
@@ -858,17 +859,24 @@ body {
 	height: 56px;
 	border-radius: 16px;
 	background-color: var(--color);
-	color: #FFFFFF;
+	color: #1D1B20;
 	border: none;
 	box-shadow: 0 4px 14px rgba(var(--color-rgb), 0.30);
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 8px;
+	padding: 0 20px;
 	transition: box-shadow 0.25s ease, transform 0.12s ease;
 	z-index: 200;
 	outline: none;
 	margin-top: 8px;
+}
+
+.pc-fab-text {
+	font-size: 16px;
+	font-weight: 500;
 }
 
 .pc-fab:hover {
@@ -884,6 +892,11 @@ body {
 .pc-fab .material-symbols-outlined {
 	font-size: 28px;
 	font-variation-settings: 'FILL' 1;
+}
+
+/* ===== FAB light background overrides ===== */
+.pc-fab.light-bg {
+	color: #FFFFFF;
 }
 
 /* ===== Palette Info (Material) ===== */
@@ -1063,14 +1076,19 @@ body {
 		position: fixed;
 		bottom: 20px;
 		right: 20px;
-		width: 48px;
+		width: auto;
 		height: 48px;
-		border-radius: 14px;
+		border-radius: 24px;
 		margin-top: 0;
+		padding: 0 16px;
 	}
 
 	.pc-fab .material-symbols-outlined {
-		font-size: 24px;
+		font-size: 22px;
+	}
+
+	.pc-fab-text {
+		font-size: 14px;
 	}
 
 	.color-group-material {
