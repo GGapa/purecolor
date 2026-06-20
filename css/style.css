@@ -727,7 +727,7 @@ body {
 	display: flex;
 	align-items: center;
 	background-color: var(--color);
-	color: #1D1B20;
+	color: #FFFFFF;
 	height: 64px;
 	padding: 0 16px;
 	position: sticky;
@@ -845,11 +845,11 @@ body {
 
 /* ===== App Bar light background overrides ===== */
 .pc-app-bar.light-bg {
-	color: #FFFFFF;
+	color: #1D1B20;
 }
 
 .pc-app-bar.light-bg .pc-app-bar-github svg path {
-	filter: brightness(10);
+	filter: none;
 }
 
 /* ===== FAB (in sidebar) ===== */
@@ -859,7 +859,7 @@ body {
 	height: 56px;
 	border-radius: 16px;
 	background-color: var(--color);
-	color: #1D1B20;
+	color: #FFFFFF;
 	border: none;
 	box-shadow: 0 4px 14px rgba(var(--color-rgb), 0.30);
 	cursor: pointer;
@@ -896,7 +896,7 @@ body {
 
 /* ===== FAB light background overrides ===== */
 .pc-fab.light-bg {
-	color: #FFFFFF;
+	color: #1D1B20;
 }
 
 /* ===== Palette Info (Material) ===== */
