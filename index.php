@@ -29,7 +29,7 @@
     <link href="<?php echo $res_prefix; ?>css/style.css" type='text/css' rel='stylesheet'>
 
     <!-- Original JS -->
-    <script src="<?php echo $res_prefix; ?>js/vue.js"></script>
+    <script src="<?php echo $res_prefix; ?>js/vue.min.js"></script>
     <script src="<?php echo $res_prefix; ?>js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo $res_prefix; ?>js/main.js"></script>
 </head>
