@@ -1029,10 +1029,82 @@ body {
     display: none !important;
 }
 
+/* ===== Toast / Snackbar ===== */
+.pc-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #323232;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 999;
+    opacity: 0;
+    animation: pc-toast-in 0.25s ease forwards;
+}
+
+.pc-toast .material-symbols-outlined {
+    font-size: 18px;
+    color: #81C784;
+}
+
+@keyframes pc-toast-in {
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== Focus styles for accessibility ===== */
+.color-preview-material:focus {
+    outline: 2px solid var(--color);
+    outline-offset: 3px;
+}
+
+.color-item-material:focus-within {
+    background: rgba(0,0,0,0.04);
+}
+
+/* ===== Smooth scrollbar ===== */
+.pc-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.pc-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.pc-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.15);
+    border-radius: 2px;
+}
+
+/* ===== Mobile color bar (hidden on desktop) ===== */
+.pc-mobile-bar {
+    display: none;
+}
+
+/* ===== Spin animation ===== */
+.spin-icon {
+    animation: pc-spin 1s linear infinite;
+}
+
+@keyframes pc-spin {
+    to { transform: rotate(360deg); }
+}
+
 /* ===== Mobile Overrides ===== */
 @media screen and (max-width: 900px) {
 	.pc-sidebar {
 		display: none;
+	}
+
+	/* Mobile color info bar */
+	.pc-mobile-bar {
+		display: flex !important;
 	}
 
 	.pc-app-bar {
@@ -1046,30 +1118,6 @@ body {
 
 	.pc-app-bar-subtitle {
 		display: none;
-	}
-
-	.pc-color-card {
-		flex-direction: row;
-		margin: 16px 12px;
-		padding: 16px 18px;
-		border-radius: 12px;
-		width: auto;
-	}
-
-	.pc-color-preview {
-		width: 56px;
-		height: 56px;
-		border-radius: 14px;
-		margin-right: 16px;
-		margin-bottom: 0;
-	}
-
-	.pc-color-hex {
-		font-size: 24px;
-	}
-
-	.pc-color-values {
-		font-size: 12px;
 	}
 
 	.pc-fab {
